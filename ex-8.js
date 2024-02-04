@@ -375,4 +375,12 @@ const bills = [
 
 // Start coding here
 
-const totalPaidByLocation;
+let totalPaidByLocation = bills.reduce(function(accumulator, currentValue){
+    if (accumulator[currentValue.location]) //or write as "(totalPaidByLocation[bill.location] !== undefined)"
+    {accumulator[currentValue.location] = currentValue.total + accumulator[currentValue.location]}
+    else
+    {accumulator[currentValue.location] = currentValue.total}//this is to set new key(which not in accumulator yet) and add total value of that new key
+    return accumulator
+}
+    ,{});
+    console.log("totalPaidByLocation: ", totalPaidByLocation);
