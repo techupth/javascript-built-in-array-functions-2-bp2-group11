@@ -374,4 +374,19 @@ const bills = [
 ];
 
 // Start coding here
-const totalMembers;
+const notNullMembers = bills.filter(function(bill) {
+  return bill.member !== null;
+});
+
+const billMembers = notNullMembers.map(function(bill) {
+  return bill.member.name;
+});
+const totalMembers = billMembers.reduce(function (accumulator, currentValue) {
+  if (!accumulator.includes(currentValue)) {
+    accumulator.push(currentValue);
+  }
+  return accumulator;
+}, []//this "[]" is initial value -> set initial as array, so we can push non-duplicate current value to array
+).length;//this length use to count how many non-duplicate member are in array (billMembers.reduce(function,initial value).length)
+
+console.log(`Unique Members Count: ${totalMembers}`);
